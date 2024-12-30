@@ -8,3 +8,5 @@
 - 병렬 install 지원
   - pnpm is up to 2x faster than npm
 
+### commitlint, husky
+> https://commitlint.js.org/guides/getting-started.html
