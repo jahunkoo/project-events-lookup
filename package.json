@@ -9,7 +9,8 @@
     "lint": "next lint",
     "prepare": "husky",
     "test": "echo \"no test specified\"",
-    "format": "prettier src/**/*.{ts,tsx,js,jsx,json} --check --ignore-unknown --no-error-on-unmatched-pattern"
+    "format": "prettier src/**/*.{ts,tsx,js,jsx,json} --check --ignore-unknown --no-error-on-unmatched-pattern",
+    "lint:fsd": "npx steiger ./src --watch"
   },
   "dependencies": {
     "@buf/alignai_frontend-challenge-datetz.bufbuild_es": "2.2.3-20241219080248-3c3bb9f9b2aa.1",
@@ -42,6 +43,7 @@
     "husky": "^9.1.7",
     "postcss": "^8",
     "prettier": "3.4.2",
+    "steiger": "^0.5.3",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }

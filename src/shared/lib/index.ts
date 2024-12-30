@@ -1,0 +1,1 @@
+export { FrontendChallengeTransportProvider } from './connectrpc';
