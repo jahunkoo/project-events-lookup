@@ -1,6 +1,6 @@
 'use client';
 
-import ProjectsDropdownMenu from './projects-dropdown-menu';
+import { ProjectsDropdownMenu } from './projects-dropdown-menu';
 //import { useFetchEventListQuery } from '../api/queries';
 
 export const HomePage = () => {

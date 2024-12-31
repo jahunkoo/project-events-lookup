@@ -4,15 +4,14 @@ import {
   listProjects,
   listEvents,
 } from '@buf/alignai_frontend-challenge-datetz.connectrpc_query-es/event/v1/event-EventService_connectquery';
-import { useProjectStore } from '../model/project-store';
+import { Project } from '@buf/alignai_frontend-challenge-datetz.bufbuild_es/event/v1/event_pb';
 
-export const useFetchProjectListQuery = () =>
+export const useFetchProjectsQuery = () =>
   useQuery(listProjects, undefined, {
     select: (data) => data.projects,
   });
 
-export const useFetchEventListQuery = () => {
-  const project = useProjectStore((state) => state.project);
+export const useFetchEventsQuery = (project?: Project) => {
   return useQuery(
     listEvents,
     {

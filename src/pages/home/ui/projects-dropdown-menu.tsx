@@ -1,29 +1,20 @@
 'use client';
 
-import { useFetchProjectListQuery } from '../api/queries';
+import { useFetchProjectsQuery } from '../api/queries';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import {
   Button,
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
   DropdownMenuCheckboxItem,
 } from '@/shared/ui';
 import { useState } from 'react';
-import { useProjectStore } from '../model/project-store';
+import { useProjectStore } from '../model/store/project-store';
 
-const ProjectsDropdownMenu = () => {
+export const ProjectsDropdownMenu = () => {
   const [open, setOpen] = useState(false);
-  const { data: projects } = useFetchProjectListQuery();
+  const { data: projects } = useFetchProjectsQuery();
   const { project: selectedProject, setProject } = useProjectStore();
 
   return (
@@ -49,5 +40,3 @@ const ProjectsDropdownMenu = () => {
     </DropdownMenu>
   );
 };
-
-export default ProjectsDropdownMenu;
