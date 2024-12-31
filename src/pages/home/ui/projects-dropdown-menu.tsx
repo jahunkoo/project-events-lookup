@@ -1,6 +1,6 @@
 'use client';
 
-import { useProjectListQuery } from '../api/queries';
+import { useFetchProjectListQuery } from '../api/queries';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import {
   Button,
@@ -19,11 +19,11 @@ import {
   DropdownMenuCheckboxItem,
 } from '@/shared/ui';
 import { useState } from 'react';
-import { useProjectStore } from '../model/projectStore';
+import { useProjectStore } from '../model/project-store';
 
 const ProjectsDropdownMenu = () => {
   const [open, setOpen] = useState(false);
-  const { data: projects } = useProjectListQuery();
+  const { data: projects } = useFetchProjectListQuery();
   const { project: selectedProject, setProject } = useProjectStore();
 
   return (
