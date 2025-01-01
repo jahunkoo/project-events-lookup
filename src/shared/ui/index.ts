@@ -1,2 +1,4 @@
-export * from './button';
-export * from './dropdown-menu';
+export * from './atoms/button';
+export * from './atoms/dropdown-menu';
+export * from './atoms/table';
+export * from './organisms/data-table';

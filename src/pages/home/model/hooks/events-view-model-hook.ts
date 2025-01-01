@@ -4,22 +4,27 @@ import {
   Event,
   Project,
 } from '@buf/alignai_frontend-challenge-datetz.bufbuild_es/event/v1/event_pb';
+import { useMemo } from 'react';
 
-interface EventsViewModel {
-  project?: Project;
-  isFetching: boolean;
-  events?: Event[];
-  nextPageToken?: string;
-  totalSize?: number;
+export interface EventViewModel extends Event {
+  timezone: string;
 }
 
-export const useEventsViewModel = (): EventsViewModel => {
+export const useEventViewModels = () => {
   const { project } = useProjectStore();
   const { data, isFetching } = useFetchEventsQuery(project);
 
+  const eventViewModels = useMemo(() => {
+    if (!data) return;
+    return data.events.map((event) => {
+      return { ...event, timezone: project?.timeZone?.id } as EventViewModel;
+    });
+  }, [project, data]);
+
   return {
-    project,
     isFetching,
-    ...data,
+    nextPageToken: data?.nextPageToken,
+    totalSize: data?.totalSize,
+    eventViewModels,
   };
 };
