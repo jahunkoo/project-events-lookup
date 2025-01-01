@@ -10,12 +10,12 @@ import {
   DropdownMenuCheckboxItem,
 } from '@/shared/ui';
 import { useState } from 'react';
-import { useProjectStore } from '../model/store/events-filter-store';
+import { useEventsFilterStore } from '../model/store/events-filter-store';
 
 export const ProjectsDropdownMenu = () => {
   const [open, setOpen] = useState(false);
   const { data: projects } = useFetchProjectsQuery();
-  const { project: selectedProject, setProject } = useProjectStore();
+  const { project: selectedProject, setProject } = useEventsFilterStore();
 
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>

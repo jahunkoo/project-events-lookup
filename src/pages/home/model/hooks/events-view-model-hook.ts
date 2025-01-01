@@ -1,4 +1,4 @@
-import { useProjectStore } from '../store/events-filter-store';
+import { useEventsFilterStore } from '../store/events-filter-store';
 import { useFetchEventsQuery } from '../../api/queries';
 import {
   Event,
@@ -11,8 +11,12 @@ export interface EventViewModel extends Event {
 }
 
 export const useEventViewModels = () => {
-  const { project } = useProjectStore();
-  const { data, isFetching } = useFetchEventsQuery(project);
+  const { project, periodStart, periodEnd } = useEventsFilterStore();
+  const { data, isFetching } = useFetchEventsQuery({
+    project,
+    startDate: periodStart,
+    endDate: periodEnd,
+  });
 
   const eventViewModels = useMemo(() => {
     if (!data) return;

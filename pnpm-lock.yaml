@@ -26,6 +26,9 @@ importers:
       '@date-fns/tz':
         specifier: ^1.2.0
         version: 1.2.0
+      '@date-fns/utc':
+        specifier: ^2.1.0
+        version: 2.1.0
       '@radix-ui/react-dropdown-menu':
         specifier: ^2.1.4
         version: 2.1.4(@types/react-dom@19.0.2(@types/react@19.0.2))(@types/react@19.0.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -274,6 +277,9 @@ packages:
 
   '@date-fns/tz@1.2.0':
     resolution: {integrity: sha512-LBrd7MiJZ9McsOgxqWX7AaxrDjcFVjWH/tIKJd7pnR7McaslGYOP1QmmiBXdJH/H/yLCT+rcQ7FaPBUxRGUtrg==}
+
+  '@date-fns/utc@2.1.0':
+    resolution: {integrity: sha512-176grgAgU2U303rD2/vcOmNg0kGPbhzckuH1TEP2al7n0AQipZIy9P15usd2TKQCG1g+E1jX/ZVQSzs4sUDwgA==}
 
   '@dependents/detective-less@5.0.0':
     resolution: {integrity: sha512-D/9dozteKcutI5OdxJd8rU+fL6XgaaRg60sPPJWkT33OCiRfkCu5wO5B/yXTaaL2e6EB0lcCBGe5E0XscZCvvQ==}
@@ -3061,6 +3067,8 @@ snapshots:
       '@bufbuild/protobuf': 2.2.3
 
   '@date-fns/tz@1.2.0': {}
+
+  '@date-fns/utc@2.1.0': {}
 
   '@dependents/detective-less@5.0.0':
     dependencies:
