@@ -3,7 +3,9 @@
 import { ButtonGroup, Button, ButtonProps } from '@/shared/ui';
 import { useEventsFilterStore } from '../model/store/events-filter-store';
 import { getPredefinedDate } from '@/shared/lib';
-import { FC, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { PeriodDateRangePicker } from './period-date-range-picker';
+import { set } from 'date-fns';
 
 const PeriodType = {
   Today: 'today',
@@ -21,29 +23,7 @@ type Item = {
 };
 
 export const PeriodButtonGroup = () => {
-  const { project, setPeriods } = useEventsFilterStore();
-  const [periodType, setPeriodType] = useState<PeriodType>(PeriodType.Last30Days);
-
-  useEffect(() => {
-    const unsub = useEventsFilterStore.subscribe(
-      (state) => state.project,
-      (project) => {
-        if (project) {
-          // default state of PeriodType is last 30 days.
-          setPeriods(
-            getPredefinedDate('startOf29DaysAgo', project?.timeZone?.id),
-            getPredefinedDate('now', project?.timeZone?.id),
-          );
-        } else {
-          setPeriods(undefined, undefined);
-        }
-      },
-    );
-
-    return () => {
-      unsub();
-    };
-  }, []);
+  const { project, periodType, setPeriodType } = useEventsFilterStore();
 
   const btnItems = useMemo<Item[]>(() => {
     const labels = {
@@ -60,55 +40,28 @@ export const PeriodButtonGroup = () => {
     }));
   }, [periodType]);
 
-  const onClickBtn = (type: PeriodType) => {
-    setPeriodType(type);
-    switch (type) {
-      case PeriodType.Today:
-        setPeriods(
-          getPredefinedDate('startOfToday', project?.timeZone?.id),
-          getPredefinedDate('now', project?.timeZone?.id),
-        );
-        break;
-      case PeriodType.Yesterday:
-        setPeriods(
-          getPredefinedDate('startOfYesterday', project?.timeZone?.id),
-          getPredefinedDate('now', project?.timeZone?.id),
-        );
-        break;
-      case PeriodType.ThisWeek:
-        setPeriods(
-          getPredefinedDate('startOfCurrentWeek', project?.timeZone?.id),
-          getPredefinedDate('now', project?.timeZone?.id),
-        );
-        break;
-      case PeriodType.Last30Days:
-        setPeriods(
-          getPredefinedDate('startOf29DaysAgo', project?.timeZone?.id),
-          getPredefinedDate('now', project?.timeZone?.id),
-        );
-        break;
-      case PeriodType.Custom:
-        break;
-    }
-  };
-
   return (
-    <ButtonGroup>
-      {btnItems.map(({ value, label, active }) => {
-        const disabled = !project;
-        const className = active ? 'text-primary bg-neutral-100' : '';
-        return (
-          <Button
-            key={value}
-            size="sm"
-            variant="outline"
-            disabled={disabled}
-            onClick={() => onClickBtn(value)}
-            className={disabled ? '' : className}>
-            {label}
-          </Button>
-        );
-      })}
-    </ButtonGroup>
+    <>
+      <ButtonGroup>
+        {btnItems.map(({ value, label, active }) => {
+          const disabled = !project;
+          const className = active ? 'text-primary bg-neutral-100' : '';
+          return (
+            <Button
+              key={value}
+              size="sm"
+              variant="outline"
+              disabled={disabled}
+              onClick={() => {
+                setPeriodType(value);
+              }}
+              className={disabled ? '' : className}>
+              {label}
+            </Button>
+          );
+        })}
+      </ButtonGroup>
+      {periodType === PeriodType.Custom && <PeriodDateRangePicker />}
+    </>
   );
 };
