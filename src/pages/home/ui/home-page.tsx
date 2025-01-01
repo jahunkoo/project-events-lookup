@@ -1,18 +1,15 @@
-'use client';
-
 import { ProjectsDropdownMenu } from './projects-dropdown-menu';
-//import { useFetchEventListQuery } from '../api/queries';
 import { EventsTable } from './events-table';
+import { PeriodButtonGroup } from './period-button-group';
 
 export const HomePage = () => {
-  // const { data } = useFetchEventListQuery();
-  // console.log(data);
   return (
-    <div className="h-screen flex flex-col">
-      <div className="p-5 flex gap-2">
+    <div className="h-screen flex flex-col px-5 py-8">
+      <div className="flex gap-4">
         <ProjectsDropdownMenu />
+        <PeriodButtonGroup />
       </div>
-      <div className="p-5 flex-auto ">
+      <div className="py-5 flex-auto ">
         <EventsTable />
       </div>
     </div>

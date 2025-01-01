@@ -10,7 +10,7 @@ import {
   DropdownMenuCheckboxItem,
 } from '@/shared/ui';
 import { useState } from 'react';
-import { useProjectStore } from '../model/store/project-store';
+import { useProjectStore } from '../model/store/events-filter-store';
 
 export const ProjectsDropdownMenu = () => {
   const [open, setOpen] = useState(false);

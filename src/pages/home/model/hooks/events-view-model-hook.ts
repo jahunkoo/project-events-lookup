@@ -1,4 +1,4 @@
-import { useProjectStore } from '../store/project-store';
+import { useProjectStore } from '../store/events-filter-store';
 import { useFetchEventsQuery } from '../../api/queries';
 import {
   Event,
