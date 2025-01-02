@@ -43,6 +43,7 @@
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
     "@eslint/eslintrc": "^3",
+    "@redux-devtools/extension": "^3.3.0",
     "@tanstack/eslint-plugin-query": "^5.62.9",
     "@types/node": "^20",
     "@types/react": "^19",

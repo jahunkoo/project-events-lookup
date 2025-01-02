@@ -1,5 +1,6 @@
-import { create } from 'zustand';
-import { subscribeWithSelector } from 'zustand/middleware';
+import { create, StateCreator } from 'zustand';
+import { devtools, subscribeWithSelector } from 'zustand/middleware';
+import type {} from '@redux-devtools/extension'; // required for devtools typing
 import { Project } from '@buf/alignai_frontend-challenge-datetz.bufbuild_es/event/v1/event_pb';
 import { getPredefinedDate } from '@/shared/lib';
 
@@ -17,19 +18,24 @@ interface State {
   periodType?: PeriodType;
   periodStart?: Date;
   periodEnd?: Date;
+  totalEventCount?: number;
+  pageNum: number;
+  pageTokenMap: Record<number, string>;
 }
 
 interface Action {
   setProject: (project: Project) => void;
   setPeriodType: (periodType: PeriodType) => void;
   setCustomPeriods: (periodStart: Date, periodEnd: Date) => void;
+  setTotalEventCount: (totalEventCount: number) => void;
+  setPageToken: (pageNum: number, pageToken: string) => void;
+  nextPage: () => void;
+  prevPage: () => void;
 }
 
 const initialState: State = {
-  project: undefined,
-  periodType: undefined,
-  periodStart: undefined,
-  periodEnd: undefined,
+  pageNum: 1,
+  pageTokenMap: {},
 };
 
 const getPeriodDates = (
@@ -60,8 +66,10 @@ const getPeriodDates = (
   }
 };
 
+const middlewares = (f: StateCreator<State & Action>) => devtools(subscribeWithSelector(f));
+
 export const useEventsFilterStore = create<State & Action>()(
-  subscribeWithSelector((set, get) => ({
+  middlewares((set, get) => ({
     ...initialState,
     setProject: (project) => {
       if (project) {
@@ -87,6 +95,15 @@ export const useEventsFilterStore = create<State & Action>()(
     },
     setCustomPeriods: (periodStart, periodEnd) => {
       set({ periodType: PeriodType.Custom, periodStart, periodEnd });
+    },
+    setTotalEventCount: (totalEventCount) => set({ totalEventCount }),
+    nextPage: () => set((state) => ({ pageNum: state.pageNum + 1 })),
+    prevPage: () => set((state) => ({ pageNum: state.pageNum - 1 })),
+    setPageToken: (pageNum, pageToken) => {
+      set((state) => {
+        const pageTokenMap = { ...state.pageTokenMap, [pageNum]: pageToken };
+        return { pageTokenMap };
+      });
     },
   })),
 );

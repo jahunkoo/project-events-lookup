@@ -12,6 +12,7 @@ export const PeriodDateRangePicker = () => {
     <DateRangePicker
       placement="bottomEnd"
       cleanable={false}
+      ranges={[]}
       format="MMM dd, yyyy"
       defaultValue={periodStart && periodEnd && [periodStart, periodEnd]}
       onChange={(dates) => {

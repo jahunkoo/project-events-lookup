@@ -1,7 +1,10 @@
 'use client';
 
 import { ColumnDef } from '@tanstack/react-table';
-import { useEventViewModels, EventViewModel } from '../../model/hooks/events-view-model-hook';
+import {
+  useEventViewModels,
+  EventViewModel,
+} from '@/pages/home/model/hooks/event-view-models-hook';
 import { DataTable } from './data-table';
 import { convertProtobufTimestampToDate, formatDate } from '@/shared/lib';
 
@@ -29,7 +32,6 @@ const columns: ColumnDef<EventViewModel>[] = [
 ];
 
 export const EventsTable = () => {
-  // useEventsViewModel
   const { eventViewModels } = useEventViewModels();
 
   return <DataTable columns={columns} data={eventViewModels || []} />;

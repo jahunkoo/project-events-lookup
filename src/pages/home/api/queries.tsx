@@ -5,7 +5,6 @@ import {
   listEvents,
 } from '@buf/alignai_frontend-challenge-datetz.connectrpc_query-es/event/v1/event-EventService_connectquery';
 import { Project } from '@buf/alignai_frontend-challenge-datetz.bufbuild_es/event/v1/event_pb';
-import { formatISO } from 'date-fns';
 import { UTCDate } from '@date-fns/utc';
 
 export const useFetchProjectsQuery = () =>
@@ -17,10 +16,12 @@ export const useFetchEventsQuery = ({
   project,
   startDate,
   endDate,
+  pageToken,
 }: {
   project?: Project;
   startDate?: Date;
   endDate?: Date;
+  pageToken?: string;
 }) => {
   const filter =
     startDate &&
@@ -31,6 +32,7 @@ export const useFetchEventsQuery = ({
     listEvents,
     {
       projectId: project?.id,
+      pageToken,
       filter,
     },
     { enabled: !!project && !!startDate && !!endDate },
