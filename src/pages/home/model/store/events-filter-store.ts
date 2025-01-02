@@ -89,8 +89,8 @@ export const useEventsFilterStore = create<State & Action>()(
       }
     },
     setPeriodType: (periodType) => {
-      if (periodType == PeriodType.Custom) {
-        set({ periodType, ...initialPaginationState });
+      if (periodType === PeriodType.Custom) {
+        set({ periodType });
       } else {
         const [start, end] = getPeriodDates(periodType, get().project!);
         set({
