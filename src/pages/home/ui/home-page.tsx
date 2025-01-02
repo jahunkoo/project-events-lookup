@@ -13,10 +13,10 @@ export const HomePage = () => {
         <PeriodButtonGroup />
         <CustomPeriodsPicker />
       </div>
+      <div className="-mb-2">
+        <TotalEventCountText />
+      </div>
       <div className="overflow-y-auto flex-auto">
-        <div className="mb-3">
-          <TotalEventCountText />
-        </div>
         <EventsTable />
       </div>
       <div className="basis-10 flex justify-center">
