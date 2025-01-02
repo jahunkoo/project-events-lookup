@@ -7,6 +7,15 @@ import { PeriodType, useEventsFilterStore } from '../model/store/events-filter-s
 import { TZDate } from '@date-fns/tz';
 import { addDays, startOfDay } from 'date-fns';
 
+const convertToPickerDate = (timezonedDate: Date): Date => {
+  const [year, month, date] = [
+    timezonedDate.getFullYear(),
+    timezonedDate.getMonth(),
+    timezonedDate.getDate(),
+  ];
+  return new Date(year, month, date);
+};
+
 export const CustomPeriodsPicker = () => {
   const { periodType, periodStart, periodEnd, setCustomPeriods, project } = useEventsFilterStore();
 
@@ -18,7 +27,10 @@ export const CustomPeriodsPicker = () => {
       cleanable={false}
       ranges={[]}
       format="MMM dd, yyyy"
-      defaultValue={periodStart && periodEnd && [periodStart, periodEnd]}
+      defaultValue={
+        periodStart &&
+        periodEnd && [convertToPickerDate(periodStart), convertToPickerDate(periodEnd)]
+      }
       onChange={(dates) => {
         if (project && dates) {
           const start = startOfDay(
