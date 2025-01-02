@@ -39,7 +39,8 @@ const getTimezoneNow = (timezone?: string) =>
   timezone ? new TZDate(new Date(), timezone) : new Date();
 const predefinedDateMap: Record<PredefinedDate, (timezone?: string) => Date> = {
   startOf29DaysAgo: (timezone?: string) => startOfDay(addDays(getTimezoneNow(timezone), -29)),
-  startOfCurrentWeek: (timezone?: string) => startOfWeek(getTimezoneNow(timezone)),
+  startOfCurrentWeek: (timezone?: string) =>
+    startOfWeek(getTimezoneNow(timezone), { weekStartsOn: 1 }),
   startOfYesterday: (timezone?: string) => startOfDay(addDays(getTimezoneNow(timezone), -1)),
   startOfToday: (timezone?: string) => startOfDay(getTimezoneNow(timezone)),
   now: (timezone?: string) => getTimezoneNow(timezone),
