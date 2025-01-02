@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, FC, ReactElement } from 'react';
+import React, { Children, cloneElement, ReactElement } from 'react';
 import { ButtonProps } from './button';
 import { cn } from '@/shared/lib';
 
