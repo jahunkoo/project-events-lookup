@@ -1,11 +1,8 @@
 'use client';
 
-import { ButtonGroup, Button, ButtonProps } from '@/shared/ui';
+import { ButtonGroup, Button } from '@/shared/ui';
 import { useEventsFilterStore } from '../model/store/events-filter-store';
-import { getPredefinedDate } from '@/shared/lib';
-import { useEffect, useMemo, useState } from 'react';
-import { PeriodDateRangePicker } from './period-date-range-picker';
-import { set } from 'date-fns';
+import { useMemo } from 'react';
 
 const PeriodType = {
   Today: 'today',
@@ -41,27 +38,24 @@ export const PeriodButtonGroup = () => {
   }, [periodType]);
 
   return (
-    <>
-      <ButtonGroup>
-        {btnItems.map(({ value, label, active }) => {
-          const disabled = !project;
-          const className = active ? 'text-primary bg-neutral-100' : '';
-          return (
-            <Button
-              key={value}
-              size="sm"
-              variant="outline"
-              disabled={disabled}
-              onClick={() => {
-                setPeriodType(value);
-              }}
-              className={disabled ? '' : className}>
-              {label}
-            </Button>
-          );
-        })}
-      </ButtonGroup>
-      {periodType === PeriodType.Custom && <PeriodDateRangePicker />}
-    </>
+    <ButtonGroup>
+      {btnItems.map(({ value, label, active }) => {
+        const disabled = !project;
+        const className = active ? 'text-primary bg-neutral-100' : '';
+        return (
+          <Button
+            key={value}
+            size="sm"
+            variant="outline"
+            disabled={disabled}
+            onClick={() => {
+              setPeriodType(value);
+            }}
+            className={disabled ? '' : className}>
+            {label}
+          </Button>
+        );
+      })}
+    </ButtonGroup>
   );
 };

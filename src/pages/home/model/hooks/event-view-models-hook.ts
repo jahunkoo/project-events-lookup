@@ -1,9 +1,6 @@
 import { useEventsFilterStore } from '../store/events-filter-store';
 import { useFetchEventsQuery } from '../../api/queries';
-import {
-  Event,
-  Project,
-} from '@buf/alignai_frontend-challenge-datetz.bufbuild_es/event/v1/event_pb';
+import { Event } from '@buf/alignai_frontend-challenge-datetz.bufbuild_es/event/v1/event_pb';
 import { useEffect, useMemo } from 'react';
 
 export interface EventViewModel extends Event {

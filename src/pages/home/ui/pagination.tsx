@@ -8,13 +8,12 @@ import { useMemo } from 'react';
 const PAGE_SIZE = 15;
 
 export const Pagination = () => {
-  const { totalEventCount, pageNum, pageTokenMap, prevPage, nextPage } = useEventsFilterStore();
+  const { totalEventCount, pageNum, prevPage, nextPage } = useEventsFilterStore();
 
   const maxPageNum = useMemo(() => {
     if (!totalEventCount) return 0;
     return Math.ceil(totalEventCount / PAGE_SIZE);
   }, [totalEventCount]);
-  console.log(maxPageNum, pageTokenMap);
 
   const currentPageText = useMemo(() => {
     if (!totalEventCount) return '';

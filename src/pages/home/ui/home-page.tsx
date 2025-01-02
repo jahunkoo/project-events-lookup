@@ -1,6 +1,7 @@
 import { ProjectsDropdownMenu } from './projects-dropdown-menu';
-import { EventsTable } from './events-table';
 import { PeriodButtonGroup } from './period-button-group';
+import { CustomPeriodsPicker } from './custom-periods-picker';
+import { EventsTable } from './events-table';
 import { Pagination } from './pagination';
 
 export const HomePage = () => {
@@ -9,6 +10,7 @@ export const HomePage = () => {
       <div className="basis-10 flex gap-4 items-center">
         <ProjectsDropdownMenu />
         <PeriodButtonGroup />
+        <CustomPeriodsPicker />
       </div>
       <div className="overflow-y-auto flex-auto">
         <EventsTable />

@@ -1,12 +1,17 @@
+'use client';
+
 import DateRangePicker from 'rsuite/DateRangePicker';
 import 'rsuite/DateRangePicker/styles/index.css';
 
-import { useEventsFilterStore } from '../model/store/events-filter-store';
+import { PeriodType, useEventsFilterStore } from '../model/store/events-filter-store';
 import { TZDate } from '@date-fns/tz';
 import { addDays, startOfDay } from 'date-fns';
 
-export const PeriodDateRangePicker = () => {
-  const { periodStart, periodEnd, setCustomPeriods, project } = useEventsFilterStore();
+export const CustomPeriodsPicker = () => {
+  const { periodType, periodStart, periodEnd, setCustomPeriods, project } = useEventsFilterStore();
+
+  if (periodType !== PeriodType.Custom) return null;
+
   return (
     <DateRangePicker
       placement="bottomEnd"
@@ -37,7 +42,6 @@ export const PeriodDateRangePicker = () => {
           );
           setCustomPeriods(start, end);
         }
-        console.log(dates);
       }}
     />
   );
