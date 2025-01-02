@@ -27,6 +27,7 @@ export const CustomPeriodsPicker = () => {
       cleanable={false}
       ranges={[]}
       format="MMM dd, yyyy"
+      placeholder="Select Custom Period"
       defaultValue={
         periodStart &&
         periodEnd && [convertToPickerDate(periodStart), convertToPickerDate(periodEnd)]
