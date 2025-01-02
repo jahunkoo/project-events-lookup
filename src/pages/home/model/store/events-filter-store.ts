@@ -2,7 +2,7 @@ import { create, StateCreator } from 'zustand';
 import { devtools, subscribeWithSelector } from 'zustand/middleware';
 import type {} from '@redux-devtools/extension'; // required for devtools typing
 import { Project } from '@buf/alignai_frontend-challenge-datetz.bufbuild_es/event/v1/event_pb';
-import { getPredefinedDate } from '@/shared/lib';
+import { getPredefinedDate } from '@/shared/util';
 
 export const PeriodType = {
   Today: 'today',

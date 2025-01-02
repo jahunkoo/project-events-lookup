@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@/shared/lib/shadcn-utils';
+import { cn } from '@/shared/util';
 
 const Typescale = {
   Body1: 'body1',

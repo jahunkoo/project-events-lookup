@@ -1,6 +1,6 @@
 import React, { Children, cloneElement, ReactElement } from 'react';
 import { ButtonProps } from './button';
-import { cn } from '@/shared/lib';
+import { cn } from '@/shared/util';
 
 interface ButtonGroupProps {
   className?: string;

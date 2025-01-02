@@ -6,7 +6,7 @@ import {
   EventViewModel,
 } from '@/pages/home/model/hooks/event-view-models-hook';
 import { DataTable } from './data-table';
-import { convertProtobufTimestampToDate, formatDate } from '@/shared/lib';
+import { convertProtobufTimestampToDate, formatDate } from '@/shared/util';
 import { useEventsFilterStore } from '../../model/store/events-filter-store';
 
 const columns: ColumnDef<EventViewModel>[] = [
