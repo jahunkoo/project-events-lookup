@@ -1,10 +1,9 @@
 import DateRangePicker from 'rsuite/DateRangePicker';
-
-// (Optional) Import component styles. If you are using Less, import the `index.less` file.
 import 'rsuite/DateRangePicker/styles/index.css';
+
 import { useEventsFilterStore } from '../model/store/events-filter-store';
 import { TZDate } from '@date-fns/tz';
-import { addDays, endOfDay, startOfDay } from 'date-fns';
+import { addDays, startOfDay } from 'date-fns';
 
 export const PeriodDateRangePicker = () => {
   const { periodStart, periodEnd, setCustomPeriods, project } = useEventsFilterStore();

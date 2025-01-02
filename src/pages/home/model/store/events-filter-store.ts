@@ -18,7 +18,7 @@ interface State {
   periodType?: PeriodType;
   periodStart?: Date;
   periodEnd?: Date;
-  totalEventCount?: number;
+  totalEventCount: number;
   pageNum: number;
   pageTokenMap: Record<number, string>;
 }
@@ -32,10 +32,17 @@ interface Action {
   nextPage: () => void;
   prevPage: () => void;
 }
-
-const initialState: State = {
+const initialPaginationState = {
   pageNum: 1,
+  totalEventCount: 0,
   pageTokenMap: {},
+};
+const initialState: State = {
+  project: undefined,
+  periodType: undefined,
+  periodStart: undefined,
+  periodEnd: undefined,
+  ...initialPaginationState,
 };
 
 const getPeriodDates = (
@@ -76,25 +83,26 @@ export const useEventsFilterStore = create<State & Action>()(
         const periodType = PeriodType.Last30Days;
         const periodStart = getPredefinedDate('startOf29DaysAgo', project?.timeZone?.id);
         const periodEnd = getPredefinedDate('now', project?.timeZone?.id);
-        set({ project, periodType, periodStart, periodEnd });
+        set({ project, periodType, periodStart, periodEnd, ...initialPaginationState });
       } else {
-        set({ ...initialState });
+        set(initialState);
       }
     },
     setPeriodType: (periodType) => {
       if (periodType == PeriodType.Custom) {
-        set({ periodType });
+        set({ periodType, ...initialPaginationState });
       } else {
         const [start, end] = getPeriodDates(periodType, get().project!);
         set({
           periodType,
           periodStart: start,
           periodEnd: end,
+          ...initialPaginationState,
         });
       }
     },
     setCustomPeriods: (periodStart, periodEnd) => {
-      set({ periodType: PeriodType.Custom, periodStart, periodEnd });
+      set({ periodType: PeriodType.Custom, periodStart, periodEnd, ...initialPaginationState });
     },
     setTotalEventCount: (totalEventCount) => set({ totalEventCount }),
     nextPage: () => set((state) => ({ pageNum: state.pageNum + 1 })),

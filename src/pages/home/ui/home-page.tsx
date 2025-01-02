@@ -10,7 +10,7 @@ export const HomePage = () => {
         <ProjectsDropdownMenu />
         <PeriodButtonGroup />
       </div>
-      <div className="flex-auto h-full">
+      <div className="overflow-y-auto flex-auto">
         <EventsTable />
       </div>
       <div className="basis-10 flex justify-center">
