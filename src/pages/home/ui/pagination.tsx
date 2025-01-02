@@ -2,7 +2,7 @@
 
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEventsFilterStore } from '../model/store/events-filter-store';
-import { Button } from '@/shared/ui';
+import { Button, Text } from '@/shared/ui';
 import { useMemo } from 'react';
 
 const PAGE_SIZE = 15;
@@ -28,7 +28,7 @@ export const Pagination = () => {
 
   return (
     <div className="flex items-center gap-2">
-      {`${currentPageText}`}
+      <Text typescale="body1">{`${currentPageText}`}</Text>
       <Button
         size="sm"
         variant="ghost"

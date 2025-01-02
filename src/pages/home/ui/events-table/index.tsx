@@ -7,6 +7,7 @@ import {
 } from '@/pages/home/model/hooks/event-view-models-hook';
 import { DataTable } from './data-table';
 import { convertProtobufTimestampToDate, formatDate } from '@/shared/lib';
+import { useEventsFilterStore } from '../../model/store/events-filter-store';
 
 const columns: ColumnDef<EventViewModel>[] = [
   {
@@ -32,7 +33,15 @@ const columns: ColumnDef<EventViewModel>[] = [
 ];
 
 export const EventsTable = () => {
-  const { eventViewModels } = useEventViewModels();
+  const project = useEventsFilterStore((state) => state.project);
+  const { eventViewModels, isFetching } = useEventViewModels();
 
-  return <DataTable columns={columns} data={eventViewModels || []} />;
+  return (
+    <DataTable
+      columns={columns}
+      data={eventViewModels || []}
+      loading={isFetching}
+      emptyMessage={project ? `No events found` : 'Please select a project'}
+    />
+  );
 };
