@@ -55,10 +55,10 @@ const getPeriodDates = (
         getPredefinedDate('startOfToday', project?.timeZone?.id),
         getPredefinedDate('now', project?.timeZone?.id),
       ];
-    case PeriodType.Yesterday: // 작일 00시 ~ 현재
+    case PeriodType.Yesterday: // 작일 00시 ~ 금일 00시
       return [
         getPredefinedDate('startOfYesterday', project?.timeZone?.id),
-        getPredefinedDate('now', project?.timeZone?.id),
+        getPredefinedDate('startOfToday', project?.timeZone?.id),
       ];
     case PeriodType.ThisWeek: // 금주 월요일 00시 ~ 현재
       return [
