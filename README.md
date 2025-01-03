@@ -107,6 +107,13 @@ src/
 atomic design은 효율적인 ui 컴포넌트 관리를 위한 방법론입니다. 아마 한 번쯤 들어보셨을거라 생각됩니다. 
 본 과제에서는 shadcn를 사용했으며 cli를 통해 받은 컴포넌트들은 shared/ui/atoms/ 하위에 위치시켰습니다.
 
+### Unit test
+유틸 함수중에서는 타임존 변환과 날짜 포맷팅이 이번 프로젝트의 중요한 기능이라 생각됩니다. 
+이를 위해 구현한 두 함수 formatDate, getPredefinedDate는 테스트코드를 작성하는 편이 좋겠다는 생각을 하게 되어, 제한된 시간안에 다음의 유닛테스트를 작성하게 되었습니다. [datetime.test.ts](./src//shared/util/datetime.test.ts)
+
+유닛테스트 구현에는 vitest를 사용하였습니다. 이유는 비교적 최근 등장한 테스팅 라이브러리이기 때문에 가볍고 빠르기 때문입니다. jest로 작성한 코드와 호환도 가능합니다.
+
+
 ## Home Page 구현
 ![home page dev diagram](./readme-assets/home-page-dev-diagram.png)
 
