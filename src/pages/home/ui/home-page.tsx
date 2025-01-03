@@ -16,7 +16,7 @@ export const HomePage = () => {
       <div className="-mb-2">
         <TotalEventCountText />
       </div>
-      <div className="overflow-y-auto flex-auto">
+      <div className="overflow-y-auto h-full">
         <EventsTable />
       </div>
       <div className="basis-10 flex justify-center">
